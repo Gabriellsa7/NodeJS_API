@@ -1,5 +1,5 @@
 import { server } from "./server/Server";
 
-const Port = 3100;
-
-server.listen(Port, () => console.log("rodando"));
+server.listen(process.env.Port || 3100, () =>
+  console.log(`rodando na porta ${process.env.PORT || 3100}`)
+);
