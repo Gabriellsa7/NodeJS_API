@@ -1,0 +1,16 @@
+{
+  "name": "api_rest_node_typescript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Gabriel Santos",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.5.4"
+  }
+}
