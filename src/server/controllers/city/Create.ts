@@ -21,57 +21,8 @@ const queryValidation: yup.Schema<IFilter> = yup.object().shape({
   filter: yup.string().required().min(3),
 });
 
-//middleware validation with yup and query
-export const createQueryValidator: RequestHandler = async (req, res, next) => {
-  try {
-    await queryValidation.validate(req.query, {
-      abortEarly: false,
-    });
-    //pass to the next controller
-    return next();
-  } catch (error) {
-    const yupError = error as yup.ValidationError;
-    const errors: Record<string, string> = {};
-
-    yupError.inner.forEach((error) => {
-      error.message;
-      if (!error.path) return;
-
-      errors[error.path] = error.message;
-    });
-
-    return res.status(StatusCodes.BAD_REQUEST).json({
-      errors,
-    });
-  }
-};
-
-//middleware validation with yup
-export const createBodyValidator: RequestHandler = async (req, res, next) => {
-  try {
-    await bodyValidation.validate(req.body, {
-      abortEarly: false,
-    });
-    //pass to the next controller
-    return next();
-  } catch (error) {
-    const yupError = error as yup.ValidationError;
-    const errors: Record<string, string> = {};
-
-    yupError.inner.forEach((error) => {
-      error.message;
-      if (!error.path) return;
-
-      errors[error.path] = error.message;
-    });
-
-    return res.status(StatusCodes.BAD_REQUEST).json({
-      errors,
-    });
-  }
-};
-
 export const createValidation = validation(queryValidation);
+export const createBodyValidator = validation(bodyValidation);
 
 export const create = async (req: Request<{}, {}, ICity>, res: Response) => {
   console.log(req.body);
