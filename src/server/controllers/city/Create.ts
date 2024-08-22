@@ -1,6 +1,7 @@
 import { Request, RequestHandler, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import * as yup from "yup";
+import { validation } from "../../shared/middleware";
 
 interface ICity {
   city: string;
@@ -26,7 +27,7 @@ export const createQueryValidator: RequestHandler = async (req, res, next) => {
     await queryValidation.validate(req.query, {
       abortEarly: false,
     });
-    //passa para o proximo controller
+    //pass to the next controller
     return next();
   } catch (error) {
     const yupError = error as yup.ValidationError;
@@ -51,7 +52,7 @@ export const createBodyValidator: RequestHandler = async (req, res, next) => {
     await bodyValidation.validate(req.body, {
       abortEarly: false,
     });
-    //passa para o proximo controller
+    //pass to the next controller
     return next();
   } catch (error) {
     const yupError = error as yup.ValidationError;
@@ -69,6 +70,8 @@ export const createBodyValidator: RequestHandler = async (req, res, next) => {
     });
   }
 };
+
+export const createValidation = validation(queryValidation);
 
 export const create = async (req: Request<{}, {}, ICity>, res: Response) => {
   console.log(req.body);
