@@ -1,7 +1,9 @@
 import * as create from "./Create";
-//simplifica o uso das controlles no arquivo de rotas
+import * as getAll from "./GetAll";
+//simplify the use of controls in the routes file
 export const CityController = {
   ...create,
+  ...getAll,
 };
 
 CityController.create;
