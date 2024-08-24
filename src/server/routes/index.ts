@@ -7,11 +7,6 @@ router.get("/", (req, res) => {
   return res.send("produto adicionada");
 });
 
-router.post(
-  "/city",
-  CityController.createBodyValidator,
-  CityController.createQueryValidator,
-  CityController.create
-);
+router.post("/city", CityController.createValidation, CityController.create);
 
 export { router };
