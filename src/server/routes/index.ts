@@ -9,5 +9,19 @@ router.get("/", (req, res) => {
 
 router.post("/city", CityController.createValidation, CityController.create);
 router.get("/city", CityController.getAllValidation, CityController.getAll);
-
+router.get(
+  "/city/:id",
+  CityController.getByIdValidation,
+  CityController.getById
+);
+router.put(
+  "/city/:id",
+  CityController.updateByIdValidation,
+  CityController.updateById
+);
+router.delete(
+  "/city/:id",
+  CityController.deleteByIdValidation,
+  CityController.deleteById
+);
 export { router };
