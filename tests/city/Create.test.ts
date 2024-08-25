@@ -10,7 +10,7 @@ describe("City - Create", () => {
     expect(typeof res.body).toEqual("number");
   });
 
-  it("try create a city", async () => {
+  it("try create a city with name character less than 3", async () => {
     const res = await testServer.post("/city").send({ name: "ca" });
 
     expect(res.statusCode).toEqual(StatusCodes.BAD_REQUEST);
